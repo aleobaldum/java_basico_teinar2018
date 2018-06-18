@@ -182,7 +182,7 @@ public class TelaCadastroBB {
 			+ "\t4 - Sacar\n"
 			+ "\t5 - Alterar Taxa de Rendimento\n"
 			+ "\t6 - Exibir Taxa de Rendimento\n"
-			+ "\t7 - Exibir Taxa de Rendimento\n"
+			+ "\t7 - Cobrar Mensalidade\n"
 			+ "\t8 - Listar Contas\n"
 			+ "\t\n=> "
 		);
