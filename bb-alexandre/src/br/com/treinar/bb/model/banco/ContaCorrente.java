@@ -76,8 +76,12 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 
 	@Override
 	public String toString() {
-		return super.toString() + " " + "ContaCorrente [va1orPagar=" + va1orPagar + ", limiteCredito=" + limiteCredito
-				+ ", limiteCreditoAtual=" + limiteCreditoAtual + "]";
+		return super.toString() + " " + "ContaCorrente [va1orPagar ="
+	                            + va1orPagar 
+	                            + ", limiteCredito="
+	                            + limiteCredito
+				                + ", limiteCreditoAtual="
+	                            + limiteCreditoAtual + "]";
 	}
 
 }
