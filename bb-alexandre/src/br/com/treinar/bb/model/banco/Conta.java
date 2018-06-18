@@ -59,7 +59,7 @@ public abstract class Conta {
 //	Método toString sobrescrito
 	@Override
 	public String toString() {
-		return "Conta [numero=" + numero + ", saldo=" + saldo + ", cliente=" + cliente.toString() + "]";
+		return "Conta [numero = " + numero + ", saldo = " + saldo + ", cliente = " + cliente.getNome() + "]";
 	}
 	
 	
