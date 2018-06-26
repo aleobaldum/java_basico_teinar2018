@@ -1,5 +1,7 @@
 package br.com.treinar.bb.model.banco;
 
+import br.com.treinar.bb.model.tipodado.TipoCliente;
+
 public class ContaCorrente extends Conta implements IProdutoPagavel {
 
 	private double va1orPagar;
