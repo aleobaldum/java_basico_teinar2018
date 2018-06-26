@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="teste"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/bb-alexandre-model"/>
+	<classpathentry kind="lib" path="C:/Users/Treinar/Desktop/bb-model.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
