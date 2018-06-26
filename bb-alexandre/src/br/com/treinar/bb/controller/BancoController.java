@@ -9,7 +9,7 @@ public class BancoController {
 
 	private int posicao;
 	private Banco banco;
-
+	
 	public BancoController() {
 		posicao = 0;
 		banco = new Banco();
@@ -20,10 +20,10 @@ public class BancoController {
 	public Conta[] recuperarContas() {
 		return banco.getContas();
 	}
-
+	
 	public void criarConta(Conta conta) {
 		if (posicao < banco.getContas().length) {
-			this.banco.getContas()[posicao++] = conta;
+			this.banco.getContas()[posicao++] = conta;			
 		}
 	}
 
@@ -51,9 +51,9 @@ public class BancoController {
 		Conta[] contas = banco.getContas();
 		for (int i = 0; i < contas.length; i++) {
 			if (contas[i] instanceof IProdutoPagavel) {
-				((IProdutoPagavel) contas[i]).pagarValorMensalidade();
+				((IProdutoPagavel) contas[i]).pagarValorMensalidade();			
 			}
 		}
-
+		
 	}
 }
