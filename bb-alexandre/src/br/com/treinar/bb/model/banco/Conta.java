@@ -2,8 +2,6 @@ package br.com.treinar.bb.model.banco;
 
 import br.com.treinar.bb.model.Cliente;
 
-//A classe abstrata não pode ser instanciada
-
 public abstract class Conta {
 
 	private int numero;
@@ -33,12 +31,10 @@ public abstract class Conta {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-//	Construtor da Classe Conta
 
 	public Conta() {
 		super();
-//		System.out.println("O Objeto foi criado");
+		System.out.println("O Objeto foi criado");
 	}
 
 	public boolean sacar(double valor) {
@@ -56,10 +52,9 @@ public abstract class Conta {
 		return this.saldo;
 	}
 
-//	Método toString sobrescrito
 	@Override
 	public String toString() {
-		return "Conta [numero = " + numero + ", saldo = " + saldo + ", cliente = " + cliente.getNome() + "]";
+		return "Conta [numero=" + numero + ", saldo=" + saldo + ", cliente=" + cliente.toString() + "]";
 	}
 	
 	

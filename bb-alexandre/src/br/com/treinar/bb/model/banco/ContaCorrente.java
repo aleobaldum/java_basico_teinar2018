@@ -37,16 +37,19 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 		}
 		return deuParaSacar;
 	}
-
+	
 	@Override
 	public double consultarSaldo() {
 		double saldoAtual = super.consultarSaldo();
 		return saldoAtual + limiteCreditoAtual;
 	}
-
+	
 	@Override
 	public void depositar(double valorDeposito) {
 		double valorDevido = this.limiteCredito - this.limiteCreditoAtual;
+		if (getCliente().getTipoCliente().equals(TipoCliente.ESPECIAL)) {
+			valorDeposito += 1.0;//clientes especiais ganham um real ao depositar
+		}
 		if (valorDevido == 0) {
 			setSaldo(getSaldo() + valorDeposito);
 		} else {
@@ -54,7 +57,7 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 				this.limiteCreditoAtual += valorDevido;
 				setSaldo(valorDeposito - valorDevido);
 			} else {
-				this.limiteCreditoAtual += valorDeposito;
+				this.limiteCreditoAtual += valorDeposito;				
 			}
 		}
 	}
@@ -76,12 +79,8 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 
 	@Override
 	public String toString() {
-		return super.toString() + " " + "ContaCorrente [va1orPagar ="
-	                            + va1orPagar 
-	                            + ", limiteCredito="
-	                            + limiteCredito
-				                + ", limiteCreditoAtual="
-	                            + limiteCreditoAtual + "]";
+		return  super.toString() + " " + "ContaCorrente [va1orPagar=" + va1orPagar + ", limiteCredito=" + limiteCredito + ", limiteCreditoAtual="
+				+ limiteCreditoAtual + "]";
 	}
-
+	
 }
