@@ -34,7 +34,7 @@ public abstract class Conta {
 
 	public Conta() {
 		super();
-		System.out.println("O Objeto foi criado");
+		//System.out.println("O Objeto foi criado");
 	}
 
 	public boolean sacar(double valor) {
