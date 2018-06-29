@@ -14,7 +14,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>br.com.treinar</groupId>
-			<artifactId>bb-gleidson-model</artifactId>
+			<artifactId>bb-alexandre-model</artifactId>
 			<version>0.0.1</version>
 			<type>jar</type>
 		</dependency>
