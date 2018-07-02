@@ -3,11 +3,13 @@ package br.com.treinar.bb.view;
 import java.util.Scanner;
 
 import br.com.treinar.bb.controller.BancoController;
+import br.com.treinar.bb.controller.ContaInexistenteException;
 import br.com.treinar.bb.model.Cliente;
 import br.com.treinar.bb.model.banco.Conta;
 import br.com.treinar.bb.model.banco.ContaCorrente;
 import br.com.treinar.bb.model.banco.ContaPoupanca;
 import br.com.treinar.bb.model.banco.ContaSalario;
+import exception.SaldoInsuficienteException;
 
 public class TelaCadastroBB {
 
@@ -48,6 +50,12 @@ public class TelaCadastroBB {
 			case 8:
 				listarContas();
 				break;
+			case 9:
+				excluirContasPorPosicao();
+				break;
+			case 10:
+				excluirContasPorNumero();
+				break;
 			case 0:
 				break;
 
@@ -59,7 +67,17 @@ public class TelaCadastroBB {
 		
 		input.close();
 	}
-	
+
+	private void excluirContasPorNumero() {
+		System.out.print("Informe o numero da conta a ser excluida: ");
+		try {
+			controller.excluirContaPorNumero(input.nextInt());
+			System.out.println("Conta excluida com sucesso");
+		} catch (ContaInexistenteException e) {
+			System.out.println("Conta inexistente");
+		}
+	}
+
 	private void cobrarMensalidade() {
 		controller.cobrarMensalidade();
 	}
@@ -70,12 +88,25 @@ public class TelaCadastroBB {
 		controller.alterarTaxaRendimento(taxaRendimento);
 	}
 
+	
+	private void excluirContasPorPosicao() {
+		int posicaoConta = pesquisarConta();
+		controller.excluirContaPorPosicao(posicaoConta);
+	}
+	
 	private void sacar() {
 		int posicaoConta = pesquisarConta();
 		System.out.print("Valor a ser sacado: ");
-		boolean sacou = controller.sacar(input.nextDouble(), posicaoConta);
-		String mensagem = sacou ? "Saque efetuado com sucesso" : "Saldo insuficiente";
-		System.out.println(mensagem);
+		try {
+			controller.sacar(input.nextDouble(), posicaoConta);
+			System.out.println("Saque efetuado com sucesso");
+		} catch (SaldoInsuficienteException e) {
+			//Concatenar string utilizando a classe builder StringBuilder
+			StringBuilder sb = new StringBuilder();
+			sb.append("Saldo insuficienete, saldo atual ").append(e.getSaldoAtual());
+			sb.append(".");
+			System.out.println(sb.toString());
+		}
 	}
 
 	private void criarConta() {
@@ -164,26 +195,34 @@ public class TelaCadastroBB {
 	}
 
 	private void listarContas() {
-		Conta[] contas = controller.recuperarContas();
-		for (int i = 0; i < contas.length; i++) {
-			if (contas[i] != null) {
-				System.out.println(i + " - " + contas[i]);
-			}
-		}
+//		Conta[] contas = controller.recuperarContas();
+//		for (int i = 0; i < contas.length; i++) {
+//			if (contas[i] != null) {
+//				System.out.println(i + " - " + contas[i]);
+//			}
+//		}
+//		for (Conta c : controller.recuperarContas()) {
+//			System.out.println(c);
+//		}
+		//passando funcao como parametro para imprimir
+		controller.recuperarContas().forEach(System.out::println);
+//		controller.recuperarContas().forEach(x -> System.out.println(x));
 	}
 	
 	private static void imprimirMenu() {
 		System.out.print(""
 			+ "Informe a opção:\n"
-			+ "\t0 - Sair\n"
-			+ "\t1 - Criar Conta\n"
-			+ "\t2 - Depositar\n"
-			+ "\t3 - Exibir Saldo\n"
-			+ "\t4 - Sacar\n"
-			+ "\t5 - Alterar Taxa de Rendimento\n"
-			+ "\t6 - Exibir Taxa de Rendimento\n"
-			+ "\t7 - Exibir Taxa de Rendimento\n"
-			+ "\t8 - Listar Contas\n"
+			+ "\t0  - Sair\n"
+			+ "\t1  - Criar Conta\n"
+			+ "\t2  - Depositar\n"
+			+ "\t3  - Exibir Saldo\n"
+			+ "\t4  - Sacar\n"
+			+ "\t5  - Alterar Taxa de Rendimento\n"
+			+ "\t6  - Exibir Taxa de Rendimento\n"
+			+ "\t7  - Exibir Taxa de Rendimento\n"
+			+ "\t8  - Listar Contas\n"
+			+ "\t9  - Excluir Contas por Posicao\n"
+			+ "\t10 - Excluir Contas por Numero\n"
 			+ "\t\n=> "
 		);
 	}

@@ -1,6 +1,8 @@
 package br.com.treinar.bb.model.banco;
 
 import br.com.treinar.bb.model.Cliente;
+import exception.SaldoInsuficienteException;
+
 
 public abstract class Conta {
 
@@ -34,18 +36,19 @@ public abstract class Conta {
 
 	public Conta() {
 		super();
-		//System.out.println("O Objeto foi criado");
+		System.out.println("O Objeto foi criado");
 	}
 
-	public boolean sacar(double valor) {
-		boolean deuParaSacar = false;
+	public void sacar(double valor) throws SaldoInsuficienteException {
 		if (valor <= saldo) {
 			saldo -= valor;
-			deuParaSacar = true;
+		} else {
+			SaldoInsuficienteException ex = new SaldoInsuficienteException();
+			ex.setSaldoAtual(getSaldo());
+			throw ex;
 		}
-		return deuParaSacar;
 	}
-	
+
 	public abstract void depositar(double valor);
 
 	public double consultarSaldo() {
@@ -56,6 +59,5 @@ public abstract class Conta {
 	public String toString() {
 		return "Conta [numero=" + numero + ", saldo=" + saldo + ", cliente=" + cliente.toString() + "]";
 	}
-	
-	
+
 }
