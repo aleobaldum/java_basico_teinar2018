@@ -7,7 +7,7 @@ public abstract class Conta {
 	private int numero;
 	private double saldo;
 	private Cliente cliente;
-	
+
 	public abstract TipoConta getType();
 
 	public Conta() {
@@ -47,7 +47,7 @@ public abstract class Conta {
 			throw ex;
 		}
 	}
-	
+
 	public abstract void depositar(double valor);
 
 	public double consultarSaldo() {
@@ -58,5 +58,5 @@ public abstract class Conta {
 	public String toString() {
 		return "Conta [numero=" + numero + ", saldo=" + saldo + ", cliente=" + cliente.toString() + "]";
 	}
-	
+
 }

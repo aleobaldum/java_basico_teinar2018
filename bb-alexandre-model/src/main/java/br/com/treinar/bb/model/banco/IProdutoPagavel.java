@@ -5,7 +5,7 @@ public interface IProdutoPagavel extends IProduto {
 	double getValorPagar();
 
 	void setValorPagar(double valorPaga);
-	
+
 	void pagarValorMensalidade();
-	
+
 }

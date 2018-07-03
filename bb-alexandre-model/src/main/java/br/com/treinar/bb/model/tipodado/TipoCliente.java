@@ -22,7 +22,7 @@ public enum TipoCliente {
 
 	private Double salarioMinimo;
 
-	//todas as instancias deverao possuir este metodo
+	// todas as instancias deverao possuir este metodo
 	public abstract Boolean verificar(Double valor);
 
 	private TipoCliente(Double salarioMinimo) {

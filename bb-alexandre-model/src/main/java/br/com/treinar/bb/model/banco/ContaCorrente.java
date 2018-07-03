@@ -8,11 +8,11 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	private double limiteCredito;
 	private double limiteCreditoAtual;
 	private static TipoConta type;
-	
+
 	static {
 		type = TipoConta.CORRENTE;
 	}
-	
+
 	@Override
 	public TipoConta getType() {
 		return type;
@@ -45,18 +45,18 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 			}
 		}
 	}
-	
+
 	@Override
 	public double consultarSaldo() {
 		double saldoAtual = super.consultarSaldo();
 		return saldoAtual + limiteCreditoAtual;
 	}
-	
+
 	@Override
 	public void depositar(double valorDeposito) {
 		double valorDevido = this.limiteCredito - this.limiteCreditoAtual;
 		if (getCliente().getTipoCliente() != null && getCliente().getTipoCliente().equals(TipoCliente.ESPECIAL)) {
-			valorDeposito += 1.0;//clientes especiais ganham um real ao depositar
+			valorDeposito += 1.0;// clientes especiais ganham um real ao depositar
 		}
 		if (valorDevido == 0) {
 			setSaldo(getSaldo() + valorDeposito);
@@ -65,7 +65,7 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 				this.limiteCreditoAtual += valorDevido;
 				setSaldo(valorDeposito - valorDevido);
 			} else {
-				this.limiteCreditoAtual += valorDeposito;				
+				this.limiteCreditoAtual += valorDeposito;
 			}
 		}
 	}
@@ -85,16 +85,16 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 		try {
 			super.sacar(this.va1orPagar);
 		} catch (SaldoInsuficienteException e) {
-			//TODO - apos três meses sem pagar cancela a conta
-			//XXX - 
-			//FIXME - 
+			// TODO - apos três meses sem pagar cancela a conta
+			// XXX -
+			// FIXME -
 		}
 	}
 
 	@Override
 	public String toString() {
-		return  super.toString() + " " + "ContaCorrente [va1orPagar=" + va1orPagar + ", limiteCredito=" + limiteCredito + ", limiteCreditoAtual="
-				+ limiteCreditoAtual + "]";
+		return super.toString() + " " + "ContaCorrente [va1orPagar=" + va1orPagar + ", limiteCredito=" + limiteCredito
+				+ ", limiteCreditoAtual=" + limiteCreditoAtual + "]";
 	}
-	
+
 }
