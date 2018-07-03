@@ -85,7 +85,7 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 		try {
 			super.sacar(this.va1orPagar);
 		} catch (SaldoInsuficienteException e) {
-			//TODO - apos tres meses sem pagar cancela a conta
+			//TODO - apos três meses sem pagar cancela a conta
 			//XXX - 
 			//FIXME - 
 		}
