@@ -5,14 +5,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Scanner;
 
 public class TestaSaidaAtividade {
 	public static void main(String[] args) throws IOException {
-		OutputStream os = new FileOutputStream("data/saida.txt", Boolean.TRUE);
+
+		Scanner leitor = new Scanner(System.in);
+
+		OutputStream os = new FileOutputStream("data/saida.txt", Boolean.FALSE);
 		OutputStreamWriter osw = new OutputStreamWriter(os);
 		BufferedWriter bw = new BufferedWriter(osw);
-		bw.newLine();
-		bw.write("Nova Linha");
-		bw.close();
+		String nome = null;
+
+		// ignore case reorna verdadeiro indiferente de estar em caixa alta ou baixa
+		String str = null;
+		while ("sair".equalsIgnoreCase(nome)) {
+			System.out.print("Informe o nome ou digite sair");
+			nome = leitor.nextLine();
+			str =!nome.equalsIgnoreCase("sair") ? new StringBuilder(nome).append("\n").toString() : " ";
+			leitor.close();
+			bw.close();
+		}
 	}
 }
